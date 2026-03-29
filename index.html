@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spencer Prosniewski</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #080c14;
+            --surface: #0f1520;
+            --border: #1a2035;
+            --blue: #4f6ef7;
+            --blue-dim: #1e3a8a;
+            --green: #22c55e;
+            --text: #e0e8ff;
+            --dim: #6b7a99;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg); }
+        ::-webkit-scrollbar-thumb { background: var(--blue-dim); border-radius: 3px; }
+
+        /* ── Nav ── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--blue);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links { display: flex; gap: 36px; list-style: none; }
+        .nav-links a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text); }
+
+        /* ── Hero ── */
+        #hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(79, 110, 247, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(79, 110, 247, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(79, 110, 247, 0.12) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero-content { position: relative; z-index: 1; }
+
+        .hero-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--blue);
+            border: 1px solid var(--blue-dim);
+            padding: 4px 14px;
+            border-radius: 99px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 40%, var(--blue) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-sub {
+            font-size: 1.15rem;
+            color: var(--dim);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        .btn {
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary { background: var(--blue); color: #fff; }
+        .btn-primary:hover { background: #3d5ce0; transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+        .btn-outline:hover { border-color: var(--blue); color: var(--blue); transform: translateY(-2px); }
+
+        /* ── Sections ── */
+        section { padding: 100px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-divider {
+            width: 48px; height: 3px;
+            background: var(--blue);
+            border-radius: 2px;
+            margin-bottom: 48px;
+        }
+
+        /* ── About ── */
+        #about { background: var(--surface); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text p {
+            color: var(--dim);
+            line-height: 1.8;
+            margin-bottom: 16px;
+            font-size: 1rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .stat-card:hover { border-color: var(--blue); }
+        .stat-number { font-size: 2rem; font-weight: 800; color: var(--blue); }
+        .stat-label { font-size: 0.8rem; color: var(--dim); margin-top: 4px; }
+
+        /* ── Projects ── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--green));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-card:hover { border-color: var(--blue); transform: translateY(-4px); }
+        .project-card:hover::before { opacity: 1; }
+
+        .project-icon { font-size: 2rem; margin-bottom: 16px; }
+        .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+        .project-desc { color: var(--dim); font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px; }
+
+        .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
+        .tag {
+            font-size: 0.75rem;
+            padding: 3px 10px;
+            border-radius: 99px;
+            background: var(--blue-dim);
+            color: #93c5fd;
+        }
+
+        .project-link {
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .project-link:hover { text-decoration: underline; }
+
+        /* ── Skills ── */
+        #skills { background: var(--surface); }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+        }
+
+        .skill-category h3 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--blue);
+            margin-bottom: 16px;
+        }
+
+        .skill-list { list-style: none; }
+        .skill-list li {
+            color: var(--dim);
+            font-size: 0.9rem;
+            padding: 6px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .skill-list li:last-child { border-bottom: none; }
+        .skill-list li::before { content: '▸'; color: var(--blue); font-size: 0.7rem; }
+
+        /* ── Contact ── */
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(79, 110, 247, 0.08), transparent 60%);
+        }
+
+        .contact-card p {
+            color: var(--dim);
+            line-height: 1.7;
+            margin-bottom: 32px;
+            position: relative;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        /* ── Footer ── */
+        footer {
+            text-align: center;
+            padding: 32px;
+            border-top: 1px solid var(--border);
+            color: var(--dim);
+            font-size: 0.85rem;
+        }
+
+        /* ── Animations ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 700px) {
+            nav { padding: 16px 24px; }
+            .nav-links { gap: 20px; }
+            .about-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-card { padding: 32px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <nav>
+        <div class="nav-logo">SP</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section id="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-content fade-up">
+            <div class="hero-tag">GRC & AI Automation</div>
+            <h1>Spencer<br>Prosniewski</h1>
+            <p class="hero-sub">Building AI-powered security tools at the intersection of governance, risk, compliance, and machine learning.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text fade-up">
+                    <p class="section-label">About Me</p>
+                    <h2 class="section-title">Who I Am</h2>
+                    <div class="section-divider"></div>
+                    <p>I'm an aspiring GRC and AI Automation professional with a passion for building tools that make security and compliance smarter. I'm currently starting an internship focused on GRC, AI Automation, and Data Security.</p>
+                    <p>I enjoy combining my knowledge of regulatory frameworks like GDPR, HIPAA, and NIST CSF with practical AI development to automate the kind of work that security teams do every day.</p>
+                    <p>When I'm not building tools, I'm exploring new ways to apply AI to real-world problems in cybersecurity and data protection.</p>
+                </div>
+                <div class="about-stats fade-up">
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Frameworks Covered</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">AI Projects Built</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Local AI — No Cloud</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Things Left to Build</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <div class="container">
+            <p class="section-label fade-up">What I've Built</p>
+            <h2 class="section-title fade-up">Projects</h2>
+            <div class="section-divider fade-up"></div>
+            <div class="projects-grid">
+                <div class="project-card fade-up">
+                    <div class="project-icon">🔒</div>
+                    <div class="project-title">AI Security Toolkit</div>
+                    <div class="project-desc">An AI-powered GRC toolkit that automatically classifies sensitive data and audits documents against GDPR, HIPAA, and NIST CSF compliance frameworks.</div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Ollama</span>
+                        <span class="tag">GDPR</span>
+                        <span class="tag">HIPAA</span>
+                        <span class="tag">NIST CSF</span>
+                    </div>
+                    <a href="https://github.com/SpencerPros/ai-security-toolkit" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-up">
+                    <div class="project-icon">🤖</div>
+                    <div class="project-title">Jarvis — AI Voice Assistant</div>
+                    <div class="project-desc">A locally-run personal AI voice assistant inspired by Iron Man's Jarvis. Features an animated orb UI, voice I/O, browser control, and persistent memory — all running on-device.</div>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Pygame</span>
+                        <span class="tag">Ollama</span>
+                        <span class="tag">Edge TTS</span>
+                        <span class="tag">Speech Recognition</span>
+                    </div>
+                    <a href="https://github.com/SpencerPros/jarvis" target="_blank" class="project-link">View on GitHub →</a>
+                </div>
+
+                <div class="project-card fade-up">
+                    <div class="project-icon">⚡</div>
+                    <div class="project-title">More Coming Soon</div>
+                    <div class="project-desc">Currently expanding my skillset in AI automation, data security, and full-stack development. New projects on the way.</div>
+                    <div class="project-tags">
+                        <span class="tag">In Progress</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+        <div class="container">
+            <p class="section-label fade-up">What I Know</p>
+            <h2 class="section-title fade-up">Skills</h2>
+            <div class="section-divider fade-up"></div>
+            <div class="skills-grid">
+                <div class="skill-category fade-up">
+                    <h3>Languages & Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>Flask</li>
+                        <li>HTML / CSS</li>
+                        <li>JavaScript</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3>AI & Automation</h3>
+                    <ul class="skill-list">
+                        <li>Prompt Engineering</li>
+                        <li>Ollama (Local LLMs)</li>
+                        <li>Claude API</li>
+                        <li>AI Tool Development</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3>GRC Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>GDPR</li>
+                        <li>HIPAA</li>
+                        <li>NIST CSF</li>
+                        <li>Data Classification</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3>Tools & Workflow</h3>
+                    <ul class="skill-list">
+                        <li>Git / GitHub</li>
+                        <li>VS Code</li>
+                        <li>PyInstaller</li>
+                        <li>REST APIs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <p class="section-label fade-up" style="text-align:center">Get In Touch</p>
+            <h2 class="section-title fade-up" style="text-align:center">Contact</h2>
+            <div class="section-divider fade-up" style="margin: 0 auto 48px;"></div>
+            <div class="contact-card fade-up">
+                <p>I'm currently open to opportunities, collaborations, and conversations about GRC, AI automation, and data security. Feel free to reach out.</p>
+                <div class="contact-links">
+                    <a href="https://github.com/SpencerPros" target="_blank" class="btn btn-primary">GitHub</a>
+                    <a href="mailto:your@email.com" class="btn btn-outline">Email Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Built by Spencer Prosniewski &mdash; 2026</p>
+    </footer>
+
+    <script>
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, i) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), i * 100);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Trigger hero immediately
+        document.querySelector('#hero .fade-up').classList.add('visible');
+    </script>
+
+</body>
+</html>
