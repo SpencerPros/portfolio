@@ -280,6 +280,47 @@
         }
         .project-link:hover { text-decoration: underline; }
 
+        /* ── Experience ── */
+        .experience-list { display: flex; flex-direction: column; gap: 20px; }
+
+        .experience-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 28px;
+            transition: all 0.3s;
+        }
+        .experience-card:hover { border-color: var(--blue); }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+        .experience-role { font-size: 1.05rem; font-weight: 700; color: var(--text); }
+        .experience-dates { color: var(--dim); font-size: 0.85rem; white-space: nowrap; }
+        .experience-company { color: var(--blue); font-size: 0.9rem; font-weight: 600; margin-bottom: 14px; }
+
+        .experience-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+        .experience-bullets li {
+            color: var(--dim);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            padding-left: 18px;
+            position: relative;
+        }
+        .experience-bullets li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 8px;
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--blue);
+        }
+
         /* ── Skills ── */
         #skills { background: var(--surface); }
 
@@ -388,6 +429,7 @@
         <div class="nav-logo">SP</div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -399,9 +441,9 @@
         <div class="hero-grid"></div>
         <div class="hero-glow"></div>
         <div class="hero-content fade-up">
-            <div class="hero-tag">GRC & AI Automation</div>
+            <div class="hero-tag">Cybersecurity GRC & AI Governance</div>
             <h1>Spencer<br><span class="typing-text">Prosniewski</span></h1>
-            <p class="hero-sub">Building AI-powered security tools at the intersection of governance, risk, compliance, and machine learning.</p>
+            <p class="hero-sub">CompTIA Security+ certified cybersecurity professional with consulting experience in AI governance, risk and maturity assessments, and security standards evaluation (NIST).</p>
             <div class="hero-btns">
                 <a href="#projects" class="btn btn-primary">View Projects</a>
                 <a href="#contact" class="btn btn-outline">Get in Touch</a>
@@ -417,27 +459,76 @@
                     <p class="section-label">About Me</p>
                     <h2 class="section-title">Who I Am</h2>
                     <div class="section-divider"></div>
-                    <p>I'm an aspiring GRC and AI Automation professional with a passion for building tools that make security and compliance smarter. I'm currently starting an internship focused on GRC, AI Automation, and Data Security.</p>
-                    <p>I enjoy combining my knowledge of regulatory frameworks like GDPR, HIPAA, and NIST CSF with practical AI development to automate the kind of work that security teams do every day.</p>
-                    <p>When I'm not building tools, I'm exploring new ways to apply AI to real-world problems in cybersecurity and data protection.</p>
+                    <p>I'm a recent DePaul University graduate (BS in Cybersecurity, Minor in Computer Science) with hands-on consulting experience in AI governance, risk and maturity assessments, and security standards evaluation. I'm currently an AI Data Governance Consultant Intern at GuidePoint Security, assessing client AI programs against the NIST AI Risk Management Framework.</p>
+                    <p>Previously, I interned as an Information Security Engineer at CIBC U.S., where I conducted NIST CSF risk assessments and built an AI-driven tool for mapping control deficiencies. I also bring hands-on experience with cloud access control assessments in Microsoft Azure.</p>
+                    <p>I'm CompTIA Security+ certified and enjoy combining regulatory frameworks like NIST, PCI-DSS, and NERC CIP with practical AI development to help organizations build smarter, more resilient security programs.</p>
                 </div>
                 <div class="about-stats fade-up">
                     <div class="stat-card">
-                        <div class="stat-number">3</div>
-                        <div class="stat-label">Frameworks Covered</div>
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label">AI Client Engagements</div>
                     </div>
                     <div class="stat-card">
                         <div class="stat-number">2</div>
-                        <div class="stat-label">AI Projects Built</div>
+                        <div class="stat-label">Cybersecurity Internships</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Local AI — No Cloud</div>
+                        <div class="stat-number">Sec+</div>
+                        <div class="stat-label">CompTIA Certified</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number">∞</div>
-                        <div class="stat-label">Things Left to Build</div>
+                        <div class="stat-number">30</div>
+                        <div class="stat-label">NIST Controls Mapped at a Time</div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <p class="section-label fade-up">Where I've Worked</p>
+            <h2 class="section-title fade-up">Experience</h2>
+            <div class="section-divider fade-up"></div>
+            <div class="experience-list">
+                <div class="experience-card fade-up">
+                    <div class="experience-header">
+                        <span class="experience-role">AI Data Governance Consultant Intern</span>
+                        <span class="experience-dates">May 2026 – Present</span>
+                    </div>
+                    <div class="experience-company">GuidePoint Security · Chicago, IL</div>
+                    <ul class="experience-bullets">
+                        <li>Assessed client AI programs against the NIST AI Risk Management Framework across 8 engagements, identifying governance gaps in data handling, model oversight, and access controls</li>
+                        <li>Reviewed Security Architecture Reports mapped to NIST CSF 2.0 and synthesized findings into executive-level summaries used directly in client deliverables</li>
+                        <li>Performed quality assurance reviews of NIST AI RMF and NIST CSF 2.0 maturity assessment deliverables, verifying findings against source documentation and documenting issues in Jira prior to client delivery</li>
+                        <li>Designed an AI Shadow IT Discovery Framework as a capstone project, correlating SSO logs, CASB telemetry, and DLP alerts to flag unauthorized AI tool usage and data exposure risk</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="experience-header">
+                        <span class="experience-role">Information Security Engineer Intern</span>
+                        <span class="experience-dates">Jun 2025 – Sep 2025</span>
+                    </div>
+                    <div class="experience-company">CIBC US, Inc · Chicago, IL</div>
+                    <ul class="experience-bullets">
+                        <li>Conducted security risk and maturity assessments against NIST CSF, identifying control gaps and supporting enterprise compliance and audit readiness across multiple business units</li>
+                        <li>Built and presented an AI-driven tool mapping deficiencies across 30 NIST CSF 2.0 controls at a time, improving executive-level risk visibility and streamlining the gap-analysis process</li>
+                        <li>Conducted access control assessments within Microsoft Azure environments, reviewing Microsoft Entra ID role assignments and permission configurations to identify control gaps and support enterprise compliance</li>
+                    </ul>
+                </div>
+
+                <div class="experience-card fade-up">
+                    <div class="experience-header">
+                        <span class="experience-role">Specialist</span>
+                        <span class="experience-dates">Oct 2025 – Jan 2026</span>
+                    </div>
+                    <div class="experience-company">Apple Inc · Chicago, IL</div>
+                    <ul class="experience-bullets">
+                        <li>Delivered consultative, client-facing technical support, translating complex issues into clear guidance for non-technical audiences while managing multiple concurrent customers</li>
+                        <li>Built trust with customers through problem-solving, communication, and attention to business and user needs</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -480,9 +571,22 @@
                 </div>
 
                 <div class="project-card fade-up">
+                    <div class="project-icon">🏭</div>
+                    <div class="project-title">CEDAR Enterprise Security Architecture</div>
+                    <div class="project-desc">Graduate consulting case study designing a full enterprise security architecture for a simulated FERC-regulated electric utility. Served as compliance and infrastructure lead: owned PCI-DSS and NERC CIP compliance mapping (CIP-002 through CIP-015), authored the incident response and cyber resilience program, developed the cybersecurity budget, and designed the network topology and OT/IT segmentation strategy across three sites.</div>
+                    <div class="project-tags">
+                        <span class="tag">NERC CIP</span>
+                        <span class="tag">PCI-DSS</span>
+                        <span class="tag">Incident Response</span>
+                        <span class="tag">Network Segmentation</span>
+                        <span class="tag">Risk Assessment</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-up">
                     <div class="project-icon">⚡</div>
                     <div class="project-title">More Coming Soon</div>
-                    <div class="project-desc">Currently expanding my skillset in AI automation, data security, and full-stack development. New projects on the way.</div>
+                    <div class="project-desc">Currently expanding my skillset in AI governance, cloud security, and full-stack development. New projects on the way.</div>
                     <div class="project-tags">
                         <span class="tag">In Progress</span>
                     </div>
@@ -499,39 +603,45 @@
             <div class="section-divider fade-up"></div>
             <div class="skills-grid">
                 <div class="skill-category fade-up">
-                    <h3>Languages & Frameworks</h3>
+                    <h3>Governance & Risk</h3>
+                    <ul class="skill-list">
+                        <li>Risk Assessment</li>
+                        <li>NIST CSF 2.0</li>
+                        <li>NIST AI RMF</li>
+                        <li>AI Governance</li>
+                        <li>Data Governance</li>
+                        <li>NERC CIP</li>
+                        <li>PCI-DSS</li>
+                        <li>Control Testing</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3>Data & Cloud Security</h3>
+                    <ul class="skill-list">
+                        <li>Data Mapping</li>
+                        <li>DLP</li>
+                        <li>CASB</li>
+                        <li>SSO/IAM Log Analysis</li>
+                        <li>Microsoft Azure</li>
+                        <li>Microsoft Entra ID</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3>Client Delivery</h3>
+                    <ul class="skill-list">
+                        <li>Executive Presentations</li>
+                        <li>Client-Facing Deliverables</li>
+                        <li>Technical Writing</li>
+                        <li>Cross-Functional Collaboration</li>
+                    </ul>
+                </div>
+                <div class="skill-category fade-up">
+                    <h3>Automation & Reporting Tools</h3>
                     <ul class="skill-list">
                         <li>Python</li>
-                        <li>Flask</li>
-                        <li>HTML / CSS</li>
-                        <li>JavaScript</li>
-                    </ul>
-                </div>
-                <div class="skill-category fade-up">
-                    <h3>AI & Automation</h3>
-                    <ul class="skill-list">
-                        <li>Prompt Engineering</li>
-                        <li>Ollama (Local LLMs)</li>
-                        <li>Claude API</li>
-                        <li>AI Tool Development</li>
-                    </ul>
-                </div>
-                <div class="skill-category fade-up">
-                    <h3>GRC Frameworks</h3>
-                    <ul class="skill-list">
-                        <li>GDPR</li>
-                        <li>HIPAA</li>
-                        <li>NIST CSF</li>
-                        <li>Data Classification</li>
-                    </ul>
-                </div>
-                <div class="skill-category fade-up">
-                    <h3>Tools & Workflow</h3>
-                    <ul class="skill-list">
-                        <li>Git / GitHub</li>
-                        <li>VS Code</li>
-                        <li>PyInstaller</li>
-                        <li>REST APIs</li>
+                        <li>Microsoft Purview</li>
+                        <li>Excel</li>
+                        <li>Jira</li>
                     </ul>
                 </div>
             </div>
@@ -545,10 +655,10 @@
             <h2 class="section-title fade-up" style="text-align:center">Contact</h2>
             <div class="section-divider fade-up" style="margin: 0 auto 48px;"></div>
             <div class="contact-card fade-up">
-                <p>I'm currently open to opportunities, collaborations, and conversations about GRC, AI automation, and data security. Feel free to reach out.</p>
+                <p>I'm currently open to opportunities, collaborations, and conversations about GRC, AI governance, and cybersecurity consulting. Feel free to reach out.</p>
                 <div class="contact-links">
                     <a href="https://github.com/SpencerPros" target="_blank" class="btn btn-primary">GitHub</a>
-                    <a href="https://www.linkedin.com/in/spencerprosniewski" target="_blank" class="btn btn-outline">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/spencer-prosniewski-009362227/" target="_blank" class="btn btn-outline">LinkedIn</a>
                     <a href="mailto:spencerljhs@gmail.com" class="btn btn-outline">Email Me</a>
                 </div>
             </div>
